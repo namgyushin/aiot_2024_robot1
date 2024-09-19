@@ -24,4 +24,13 @@ aiot robot
   - 변수 만들기/사용하기
   - 복합대입연산자
   - 사용자 입력 : input()
+  - 문자열의 format() 함수, 기능
 - 5 교시
+  - upper(), lower(), strip(), booleen
+  - find(), rfind(), split(), join()
+  - 불 (비교 연산자, 논리 연산자)
+  - if 조건문
+- 6 교시
+  - 날짜/시간 활용하기
+  - else 조건문의 활용, elif 구문
+  - if 조건문을 효율적으로 사용하기
