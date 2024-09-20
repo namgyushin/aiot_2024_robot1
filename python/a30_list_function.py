@@ -23,8 +23,8 @@ def main() :
     output = [fruit for fruit in array if fruit != "초콜릿" ]
 
     # 삼항 연산자 C -> condition ? true : false
-    print( "True" if False else "False")
-    #               condition
+    print( "True" if     False    else "False")
+    #                  condition
     print(output) 
 
 
