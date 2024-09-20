@@ -24,6 +24,7 @@ def main() :
 
     # 삼항 연산자 C -> condition ? true : false
     print( "True" if False else "False")
+    #               condition
     print(output) 
 
 
