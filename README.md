@@ -36,3 +36,26 @@ aiot robot
   - if 조건문을 효율적으로 사용하기
 - 7 교시
   - 오늘 배운거 포함된 문제 풀어보기
+ 
+---
+## 2024_9_20
+---
+
+
+- 1 교시
+  - list 선언,접근,연산자,extend(주소그대로, append는 새로운값 반환)
+- 2 교시
+  - list에 요소 추가하기: append, insert
+  - list에 요소 제거하기: del, pop, remove
+  - for 반복문
+  - for 반복문 : 리스트와 함께 사용하기
+  - 딕셔너리 선언, 요소에 접근
+- 3 교시
+  - 값 추가/제거, 내부에 키가 있는지 확인하기
+  - for 반복문 : 딕셔너리와 함께 사용하기
+- 4 교시
+  - while 반복문, list method, dictionary method
+  - list comprehension
+
+
+  
