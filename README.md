@@ -56,6 +56,13 @@ aiot robot
 - 4 교시
   - while 반복문, list method, dictionary method
   - list comprehension
+- 5 교시
+  - 함수, 활용
+  - 기본, 가변, 키워드 매개변수
+- 6 교시
+  - 오류의 종류, 기본예외처리
+  - try except, try except else, finally 구문
+  - 모듈 사용의 기본 : math 모듈
 
 
   
