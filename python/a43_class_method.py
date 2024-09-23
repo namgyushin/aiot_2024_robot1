@@ -1,4 +1,6 @@
-class Student:
+class Student:      #깃허브
+    count = 0
+    students = []
     def __init__(self, name, korean, math, english, science):
         self.name = name
         self.korean = korean
@@ -7,6 +9,9 @@ class Student:
         self.science = science
         self.sum = self.get_sum()
         self.average = self.get_average()
+        Student.count += 1
+        Student.students.append(self)
+
 
     def get_sum(self):
         return self.korean + self.math + self.english + self.science
@@ -42,27 +47,26 @@ class Student:
             return self.sum < value
     def __le__(self, value):
         return self.sum <= value.sum
+    
+    @classmethod
+    def print_students(cls):
+        print("------- 학생 목록 -------")
+        print(f"총 학생수: {cls.count}")
+        print("이름\t총점\t평균")
+        for student in cls.students:
+            print(student)
+        print("------------------------")
 
 def main() :
-    students = [
-        Student("신남규", 99, 99, 99, 99),
-        Student("이명철", 88, 88, 88, 88),
-        Student("변새롬", 77, 77, 77, 77),
-        Student("강민수", 66, 66, 66, 66),
-        Student("정도현", 55, 55, 55, 55),
-        Student("김승기", 44, 44, 44, 44),
-    ]
-    print("이름\t총점\t평균")
-    for student in students:
-        print(student.to_string())
-        # print(student)
-    student_a = Student("윤인성", 95, 95, 95, 95)
-    student_b = Student("연하진", 85, 85, 85, 85)
-    print(f"student_a == student_b : {student_a == student_b}")
-    print(f"student_a != student_b : {student_a != student_b}")
-    print(f"student_a is student_b : {student_a is student_b}") # 두개가 같은 객체인지 확인
-    print(student_a.sum)
-    print(student_a < 350)
+    Student("신남규", 99, 99, 99, 99)
+    Student("이명철", 88, 88, 88, 88)
+    Student("변새롬", 77, 77, 77, 77)
+    Student("강민수", 66, 66, 66, 66)
+    Student("정도현", 55, 55, 55, 55)
+    Student("김승기", 44, 44, 44, 44)
+    
+    Student.print_students()
 
+        
 if __name__ == "__main__":
     main()

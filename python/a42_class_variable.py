@@ -1,4 +1,5 @@
 class Student:
+    count = 0
     def __init__(self, name, korean, math, english, science):
         self.name = name
         self.korean = korean
@@ -7,6 +8,7 @@ class Student:
         self.science = science
         self.sum = self.get_sum()
         self.average = self.get_average()
+        Student.count += 1
 
     def get_sum(self):
         return self.korean + self.math + self.english + self.science
@@ -52,17 +54,13 @@ def main() :
         Student("정도현", 55, 55, 55, 55),
         Student("김승기", 44, 44, 44, 44),
     ]
+
+    print(f"총 학생수: {Student.count}")
+    print(f"총 학생수: {students[0].count}")
     print("이름\t총점\t평균")
     for student in students:
         print(student.to_string())
         # print(student)
-    student_a = Student("윤인성", 95, 95, 95, 95)
-    student_b = Student("연하진", 85, 85, 85, 85)
-    print(f"student_a == student_b : {student_a == student_b}")
-    print(f"student_a != student_b : {student_a != student_b}")
-    print(f"student_a is student_b : {student_a is student_b}") # 두개가 같은 객체인지 확인
-    print(student_a.sum)
-    print(student_a < 350)
-
+        
 if __name__ == "__main__":
     main()
