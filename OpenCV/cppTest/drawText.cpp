@@ -13,7 +13,7 @@ int main()
 
     String text = u8"안녕 오픈CV!";
     auto ft2 = freetype::createFreeType2();
-    ft2->loadFontData("/home/aa/aiot_2024_robot/OpenCV/cppTest/data/NanumPenScript-Regular.ttf", 0);
+    ft2->loadFontData("/home/lmc/aiot_2024_robot1/OpenCV/cppTest/data/NanumPenScript-Regular.ttf", 0);
     Size textSize = ft2->getTextSize(text, 50, -1, 0);
 
     int a = 0;
