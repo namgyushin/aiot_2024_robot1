@@ -4,7 +4,7 @@
 using namespace cv;
 using namespace std;
 
-String folder = "/home/aa/aiot_2024_robot/OpenCV/cppTest/data/";
+String folder = "/home/lmc/aiot_2024_robot1/OpenCV/cppTest/data/";
 int main()
 {
     Mat src = imread(folder + "lenna.bmp", IMREAD_GRAYSCALE);

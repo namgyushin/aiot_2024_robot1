@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-folder = "/home/aa/aiot_2024_robot/OpenCV/cppTest/data/"
+folder = "/home/lmc/aiot_2024_robot1/OpenCV/cppTest/data/"
 
 src = cv2.imread(folder + "frame.png")
 

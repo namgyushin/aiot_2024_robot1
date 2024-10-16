@@ -6,7 +6,7 @@ using namespace std;
 
 int main()
 {
-    String path = "/home/aa/aiot_2024_robot/OpenCV/cppTest/data";
+    String path = "/home/lmc/aiot_2024_robot1/OpenCV/cppTest/data";
     Mat img1 = imread(path + "/dog.bmp");
     Mat img2 = img1;
     Mat img3;

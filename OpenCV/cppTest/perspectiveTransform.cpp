@@ -4,7 +4,7 @@
 using namespace cv;
 using namespace std;
 
-String folder = "/home/aa/aiot_2024_robot/OpenCV/cppTest/data/";
+String folder = "/home/lmc/aiot_2024_robot1/OpenCV/cppTest/data/";
 void onMouse(int event, int x, int y, int flags, void *data);
 
 struct Mydata

@@ -7,7 +7,7 @@ using namespace std;
 int main()
 {
     // VideoCapture cap(0);
-    String folder = "/home/aa/aiot_2024_robot/OpenCV/cppTest/data/";
+    String folder = "/home/lmc/aiot_2024_robot1/OpenCV/cppTest/data/";
     VideoCapture cap(folder + "vtest.avi");
     Mat frame;
 

@@ -11,7 +11,7 @@ def on_mouse(event, x, y, flags, param):
 
 
 def main():
-    folder = "/home/aa/aiot_2024_robot/OpenCV/cppTest/data/"
+    folder = "/home/lmc/aiot_2024_robot1/OpenCV/cppTest/data/"
     src = cv2.imread(folder+"lenna.bmp", cv2.IMREAD_COLOR)
     
     param = {'src':src}
