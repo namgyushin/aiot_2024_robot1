@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-package_name = 'simpleRos'
+package_name = 'simple_ros'
 
 setup(
     name=package_name,
@@ -15,12 +15,15 @@ setup(
     zip_safe=True,
     maintainer='lmc',
     maintainer_email='namgyushin@naver.com',
-    description='simpleRos demo',
+    description='simple_ros demo',
     license='Apache 2.0',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            "hello = simpleRos.hello:main"
+            "hello = simple_ros.hello:main",
+            "hello_class = simple_ros.hello_class:main",
+            "hello_sub = simple_ros.hello_sub:main",
+            "hello_pub = simple_ros.hello_pub:main"
         ],
     },
 )
