@@ -5,6 +5,7 @@ from rclpy.qos import (
     QoSHistoryPolicy,
     QoSProfile,
     QoSReliabilityPolicy,
+    # qos_profile_sensor_data
 )
 from std_msgs.msg import String
 
@@ -15,6 +16,7 @@ class Hello_sub(Node):
         self.qos_profile = QoSProfile(history=QoSHistoryPolicy.KEEP_ALL,
                                       reliability=QoSReliabilityPolicy.RELIABLE,
                                       durability=QoSDurabilityPolicy.TRANSIENT_LOCAL)
+        # self.qos_profile = qos_profile_sensor_data
         self.create_subscription(String, "send", self.sub_callback, self.qos_profile)
 
     def sub_callback(self, msg: String):
