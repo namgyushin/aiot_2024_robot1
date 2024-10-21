@@ -1,11 +1,10 @@
 import rclpy
 from rclpy.node import Node
-from rclpy.qos import (
+from rclpy.qos import (  # qos_profile_sensor_data,
     QoSDurabilityPolicy,
     QoSHistoryPolicy,
     QoSProfile,
     QoSReliabilityPolicy,
-    # qos_profile_sensor_data
 )
 from std_msgs.msg import String
 
@@ -20,7 +19,7 @@ class Hello_sub(Node):
         self.create_subscription(String, "send", self.sub_callback, self.qos_profile)
 
     def sub_callback(self, msg: String):
-        print(msg.data)
+        self.get_logger().info(msg.data)
 
 def main():
     rclpy.init()

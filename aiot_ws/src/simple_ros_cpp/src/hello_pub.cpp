@@ -9,7 +9,7 @@ void printHello();
 int main()
 {
     rclcpp::init(0, nullptr);
-    cout << "Hello, World!!!!!" << endl;
+    // node = Node("hello")
     auto node = std::make_shared<rclcpp::Node>("hello");
     auto timer = node->create_wall_timer(1s, printHello);
     rclcpp::spin(node);
@@ -20,6 +20,6 @@ int main()
 void printHello()
 {
     static int count;
-    cout << "Hello, World!!!!!" << count << endl;
+    cout << "Hello, World!!!!! " << count << endl;
     count++;
 }
