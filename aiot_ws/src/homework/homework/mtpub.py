@@ -1,6 +1,6 @@
 import rclpy
 from rclpy.node import Node
-from rclpy.qos import (
+from rclpy.qos import (  # qos_profile_sensor_data,
     QoSDurabilityPolicy,
     QoSHistoryPolicy,
     QoSProfile,
@@ -9,35 +9,24 @@ from rclpy.qos import (
 from std_msgs.msg import Header, String
 
 
-class Message_time_pub(Node):
+class Message_time_sub(Node):
     def __init__(self):
-        super().__init__("mtpub")
+        super().__init__("mtsub")
         self.qos_profile = QoSProfile(history=QoSHistoryPolicy.KEEP_ALL,
                                       reliability=QoSReliabilityPolicy.RELIABLE,
                                       durability=QoSDurabilityPolicy.TRANSIENT_LOCAL)
-        self.create_timer(1, self.print_message)
-        self.create_timer(0.5, self.print_time)
-        self.pub = self.create_publisher(String, "message2", self.qos_profile)
-        self.pub2 = self.create_publisher(Header, "time", self.qos_profile)
-        self.number = 0
+        self.create_subscription(String, "message", self.sub_callback, self.qos_profile)
+        self.create_subscription(Header, "time", self.sub_callback2, self.qos_profile)
 
-    def print_message(self):
-        msg = String()
-        msg.data = f"this is message from mtpub! + {self.number}"
-        self.pub.publish(msg)
+    def sub_callback(self, msg: String):
         print(msg.data)
-        self.number += 1
 
-    def print_time(self):
-        msg = Header()
-        msg.frame_id = "time"
-        msg.stamp = self.get_clock().now().to_msg()
-        self.pub2.publish(msg)
-        print(msg)
+    def sub_callback2(self, msg: Header):
+        print(msg.frame_id, msg.stamp.sec,  msg.stamp.nanosec)
 
 def main():
     rclpy.init()
-    node = Message_time_pub()
+    node = Message_time_sub()
     try:
         rclpy.spin(node)
     except KeyboardInterrupt:
