@@ -6,7 +6,8 @@
                 "${workspaceFolder}/**",
                 "/usr/include/opencv4",
                 "/opt/ros/humble/include/**",
-                "/home/lmc/aiot_2024_robot1/aiot_ws/src/simple_ros_cpp/include"
+                "/home/lmc/aiot_2024_robot1/aiot_ws/src/simple_ros_cpp/include",
+                "/home/lmc/aiot_2024_robot1/aiot_ws/install/**"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",

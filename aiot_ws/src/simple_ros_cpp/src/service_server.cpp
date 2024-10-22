@@ -24,16 +24,17 @@ private:
     {
         std::string str = request->data ? std::string("true") : std::string("false");
         RCLCPP_INFO(get_logger(), str.c_str());
-        if (request->data!= _bool)
+        rclcpp::sleep_for(2s);
+        if (request->data != _bool)
         {
             _bool = !_bool;
             response->success = true;
-            response->message = str + " stting success!!";
+            response->message = str + " setting success!!";
         }
         else
         {
             response->success = false;
-            response->message = str + " stting fail!!";
+            response->message = str + " setting fail!!";
         }
     }
 };
