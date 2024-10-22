@@ -55,7 +55,7 @@ private:
     }
     void update()
     {
-        _twist.linear.x += 0.006;
+        _twist.linear.x += 0.001;
         _twist.angular.z = 1.0;
     }
 };
