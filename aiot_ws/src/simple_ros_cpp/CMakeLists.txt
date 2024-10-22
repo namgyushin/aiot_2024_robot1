@@ -10,6 +10,8 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(OpenCV REQUIRED)
+find_package(geometry_msgs REQUIRED)
+find_package(turtlesim REQUIRED)
 
 # include directories
 include_directories(include)
@@ -31,12 +33,16 @@ target_link_libraries(hello_sub_opencv ${OpenCV_LIBS})
 target_link_directories(hello_sub_opencv PUBLIC ${OpenCV_LIB_DIR})
 ament_target_dependencies(hello_sub_opencv rclcpp std_msgs)
 
+add_executable(move_turtle src/move_turtle.cpp)
+ament_target_dependencies(move_turtle rclcpp geometry_msgs turtlesim)
+
 install(TARGETS
   hello_pub
   hello_pub_lambda
   hello_pub_class
   hello_sub
   hello_sub_opencv
+  move_turtle
   DESTINATION lib/${PROJECT_NAME})
 
 install(DIRECTORY launch DESTINATION share/${PROJECT_NAME})
