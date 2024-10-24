@@ -4,7 +4,7 @@
   <name>arith</name>
   <version>0.0.0</version>
   <description>arithmetic final demo</description>
-  <maintainer email="freshmea@naver.com">frehmea</maintainer>
+  <maintainer email="namgyushin@naver.com">lmc</maintainer>
   <license>Apache License 2.0</license>
 
   <depend>rclpy</depend>
