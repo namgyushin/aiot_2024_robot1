@@ -12,6 +12,7 @@ class Simple_parameter(Node):
             self.get_logger().info("server is not available!!")
         self.create_timer(1, self.print_parameter)
         self.count = 0
+        self.declare_parameter('number1', 0)
 
     def print_parameter(self):
         self.count += 1
