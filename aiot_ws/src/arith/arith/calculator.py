@@ -28,8 +28,8 @@ class Calculator(Node):
         self.argument_a = msg.argument_a
         self.argument_b = msg.argument_b
         self.get_logger().info(f"Time Stamp : {msg.stamp}")
-        self.get_logger().info(f"Argument_a : {self.argument_a}")
-        self.get_logger().info(f"Argument_b : {self.argument_b}")
+        # self.get_logger().info(f"Argument_a : {self.argument_a}")
+        # self.get_logger().info(f"Argument_b : {self.argument_b}")
         self.update_formula()
 
     def service_callback(self, request : ArithmeticOperator.Request, response: ArithmeticOperator.Response):
@@ -57,7 +57,7 @@ class Calculator(Node):
             try:
                 self.argument_result = self.argument_a / self.argument_b
             except ZeroDivisionError:
-                self.argument_result = 0
+                self.argument_result = 0.0
         self.argument_formula = f"{self.argument_result} = {self.argument_a} {self.argument_operator} {self.argument_b}"
         self.get_logger().info(self.argument_formula)
 
