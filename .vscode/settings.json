@@ -72,7 +72,10 @@
         "cinttypes": "cpp",
         "typeindex": "cpp",
         "typeinfo": "cpp",
-        "variant": "cpp"
+        "variant": "cpp",
+        "any": "cpp",
+        "regex": "cpp",
+        "valarray": "cpp"
     },
     "cmake.sourceDirectory": "/home/lmc/aiot_2024_robot1/aiot_ws/src/arith_cpp"
 }
