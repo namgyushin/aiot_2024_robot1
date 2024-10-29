@@ -73,5 +73,6 @@
         "typeindex": "cpp",
         "typeinfo": "cpp",
         "variant": "cpp"
-    }
+    },
+    "cmake.sourceDirectory": "/home/lmc/aiot_2024_robot1/aiot_ws/src/arith_cpp"
 }
