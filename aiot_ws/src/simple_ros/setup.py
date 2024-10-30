@@ -43,7 +43,9 @@ setup(
             "action_client = simple_ros.action_client:main",
             "logging_example = simple_ros.logging_example:main",
             "deadline = simple_ros.deadline:main",
-            "lifespan = simple_ros.lifespan:main"
+            "lifespan = simple_ros.lifespan:main",
+            "lifeliness = simple_ros.lifeliness:main",
+
         ],
     },
 )
