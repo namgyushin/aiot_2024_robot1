@@ -10,6 +10,7 @@ def generate_launch_description():
                 'rviz',
                 'urdf.rviz'])
     default_model_path = PathJoinSubstitution([
+                # FindPackageShare('move_turtle'),
                 'urdf',
                 'myfirst.urdf'])
     model = DeclareLaunchArgument(
@@ -31,7 +32,7 @@ def generate_launch_description():
         rviz_arg,
         IncludeLaunchDescription(
             PathJoinSubstitution([
-                FindPackageShare('move_turtle'),
+                FindPackageShare('urdf_launch'),
                 'launch',
                 'display.launch.py']),
             launch_arguments={
