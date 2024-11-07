@@ -1,6 +1,7 @@
 import math
 
 import rclpy
+import tf2_ros
 from geometry_msgs.msg import TransformStamped, Twist
 from nav_msgs.msg import Odometry
 from rclpy.node import Node
@@ -53,6 +54,7 @@ class Move_turtle(Node):
         self.laserscan_degree = [3.5 for i in range(360)]
         self.find_wall = False
         self.tf_broadcaster = TransformBroadcaster(self)
+        self.tf_listener = None
 
     def twist_pub(self):
         self.restrain()
@@ -61,55 +63,16 @@ class Move_turtle(Node):
     def laser_callback(self, msg: LaserScan):
         self.laserscan = msg
         count = 0
+        self.get_logger().info(f"self.laserscan_degree:{self.laserscan_degree}")
         for s_radian in self.laserscan.ranges:
             radian_index = msg.angle_min+msg.angle_increment*count
             degree_index = int(radian_index/3.141592*180)
-            if s_radian == float('inf'):
+            if s_radian == float('inf') or s_radian == 0.0:
                 s_radian = msg.range_max
             # if degree_index >= 360:
             #     degree_index = 359
             self.laserscan_degree[degree_index] = s_radian
             count +=1
-        self.wall_45_collision_point_function()
-    
-    def wall_45_collision_point_function(self):
-        # turtlebot 현재 위치
-        x = self.odom.pose.pose.position.x
-        y = self.odom.pose.pose.position.y
-        theta = self.theta
-        # 45도 방향의 레이저 거리
-        laser_45 = self.laserscan_degree[45]
-        # 90도 방향의 레이저 거리
-        laser_90 = self.laserscan_degree[90]
-        # 벽과의 충돌점 45도
-        wall_45_collision_point = (
-            x + laser_45*math.cos(theta+math.pi/4),
-            y + laser_45*math.sin(theta+math.pi/4))
-        # 벽과의 충돌점 90도
-        wall_90_collision_point = (
-            x + laser_90*math.cos(theta+math.pi/2),
-            y + laser_90*math.sin(theta+math.pi/2))
-        # 45도 충돌점과 90도 충돌점과의 기울기
-        slope = math.atan2(wall_45_collision_point[1]-wall_90_collision_point[1],wall_45_collision_point[0]-wall_90_collision_point[0])
-        # 기울기의 직각 방향 기울기
-        slope_90 = slope - math.pi/2
-        # 45도 충돌점에서 90 방향으로 0.4m 떨어진 지점 구하기
-        wall_45_collision_point_0_4 = (
-            wall_45_collision_point[0] + 0.4*math.cos(slope_90),
-            wall_45_collision_point[1] + 0.4*math.sin(slope_90))
-        # tf2로 구현
-        t = TransformStamped()
-        t.header.stamp = self.get_clock().now().to_msg()
-        t.header.frame_id = "odom"
-        t.child_frame_id = "follow_point"
-        t.transform.translation.x = wall_45_collision_point_0_4[0]
-        t.transform.translation.y = wall_45_collision_point_0_4[1]
-        t.transform.translation.z = 0.0
-        t.transform.rotation.x = 0.0
-        t.transform.rotation.y = 0.0
-        t.transform.rotation.z = 0.0
-        t.transform.rotation.w = 1.0
-        self.tf_broadcaster.sendTransform(t)
 
 
     def odom_callback(self, msg: Odometry):
@@ -138,6 +101,7 @@ class Move_turtle(Node):
                 self.find_wall = True
         else:
             # 코너에서
+            print("no follow tf point")
             if self.laserscan_degree[45] > 1.00:
                 self.twist.linear.x = MAX_VEL/4
                 self.twist.angular.z = MAX_ANGLE / 8
