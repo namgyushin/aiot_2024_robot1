@@ -33,6 +33,7 @@ setup(
             'follow_wall_tf = move_turtle.follow_wall_tf:main',
             'follow_waypoints = move_turtle.follow_waypoints:main',
             'follow_waypoints_loop = move_turtle.follow_waypoints_loop:main'
+            'follow_ar_marker = move_turtle.follow_ar_marker:main',
         ],
     },
 )
