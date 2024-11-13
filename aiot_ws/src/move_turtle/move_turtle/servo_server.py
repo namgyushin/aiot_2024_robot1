@@ -1,11 +1,9 @@
 import time
 
 import rclpy
-import RPi.GPIO as gpio
+import RPi.GPIO as gpio # type: ignore
 from rclpy.node import Node
 from tb_interface.srv import ServoAngle
-
-from aiot_ws.servo_test import set_servo_angle
 
 
 class ServoServer(Node):
