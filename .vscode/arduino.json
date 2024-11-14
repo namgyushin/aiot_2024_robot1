@@ -1,0 +1,5 @@
+{
+    "board": "arduino:avr:uno",
+    "port": "/dev/ttyUSB1",
+    "sketch": "arduino_project/switch/switch.ino"
+}
