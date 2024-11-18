@@ -1,41 +1,45 @@
-import os
-
-from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument
-from launch.substitutions import LaunchConfiguration
-from launch_ros.actions import Node
+from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
+from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
+from launch_ros.substitutions import FindPackageShare
 
 
 def generate_launch_description():
-    info_topic = LaunchConfiguration('info_topic',
-                                     default='/camera/image/camera_info')
-    size = LaunchConfiguration('size', default=0.1)
-    dictionary = LaunchConfiguration('dictionary', default='DICT_5X5_100')
-    in_compressed = LaunchConfiguration('in_compressed',
-                                        default='/camera/image/compressed')
+    default_rviz_config_path = PathJoinSubstitution([
+                FindPackageShare('move_turtle'),
+                'rviz',
+                'urdf.rviz'])
+    default_model_path = PathJoinSubstitution([
+                # FindPackageShare('move_turtle'),
+                'urdf',
+                'myfirst.urdf'])
+    model = DeclareLaunchArgument(
+        name='model',
+        default_value=default_model_path,
+        description='urdf path')
+    gui_arg = DeclareLaunchArgument(
+        name='gui',
+        default_value='true',
+        choices=['true', 'false'],
+        description='Flag to enable joint_state_publisher_gui')
+    rviz_arg = DeclareLaunchArgument(
+        name='rvizconfig',
+        default_value=default_rviz_config_path,
+        description='Absolute path to rviz config file')
     return LaunchDescription([
-        DeclareLaunchArgument('info_topic',
-                              default_value=info_topic,
-                              description="info_topic"),
-        DeclareLaunchArgument('size',
-                              default_value=size,
-                              description="marker_size"),
-        DeclareLaunchArgument('dictionary',
-                              default_value=dictionary,
-                              description="aruco dictionary id"),
-        DeclareLaunchArgument('in_compressed',
-                              default_value=in_compressed,
-                              description="compressed topic name"),
-        Node(package="ros2_aruco",
-             executable="aruco_node",
-             parameters=[{'camera_info_topic': info_topic,
-                          'marker_size': size,
-                          'aruco_dictionary_id': dictionary}]),
-        Node(package="image_transport",
-             executable="republish",
-             arguments=['compressed', 'raw'],
-             remappings=[
-                 ('in/compressed', in_compressed),
-                 ('out', '/camera/image_raw')]),
-        ])
+        model,
+        gui_arg,
+        rviz_arg,
+        IncludeLaunchDescription(
+            PathJoinSubstitution([
+                FindPackageShare('urdf_launch'),
+                'launch',
+                'display.launch.py']),
+            launch_arguments={
+                'urdf_package': 'move_turtle',
+                'urdf_package_path': LaunchConfiguration('model'),
+                'rviz_config': LaunchConfiguration('rvizconfig'),
+                'jsp_gui': LaunchConfiguration('gui'),
+                'remappings': "[('/tf', '/robot1/tf'), ('/tf_static', '/robot1/tf_static')]"
+            }.items()
+            )])
