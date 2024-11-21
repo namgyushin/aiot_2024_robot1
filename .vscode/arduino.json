@@ -1,6 +1,6 @@
 {
     "board": "arduino:avr:uno",
     "port": "/dev/ttyUSB0",
-    "sketch": "arduino_project/servo/servo.ino",
+    "sketch": "arduino_project/lcd/lcd.ino",
     "output": "arduino_project/build"
 }
