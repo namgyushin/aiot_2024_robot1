@@ -8,7 +8,7 @@ class Arduino_lcd(Node):
     def __init__(self):
         super().__init__("arduino_led")
         self.create_subscription(String, "lcd", self.sub_callback, 10)
-        self.ser = serial.Serial('/dev/ttyACM0', 115200)
+        self.ser = serial.Serial('/dev/ttyUSB0', 115200)
 
     def sub_callback(self, msg: String):
         if len(msg.data) < 20:
